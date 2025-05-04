@@ -14,9 +14,12 @@ set SFML_INCLUDE=-I./code/include
 set SFML_LIB_DIR=-L./code/lib
 set SFML_LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
+:: Get all source files
+echo Compiling all source files...
+set SOURCES=src\main.cpp src\ResourceManager.cpp src\WallpaperGrid.cpp
+
 :: Compile with minimal flags to avoid issues
-echo Compiling src/main.cpp...
-%CXX% %CXXFLAGS% %SFML_INCLUDE% src/main.cpp -o build/sfml_window.exe %SFML_LIB_DIR% %SFML_LIBS%
+%CXX% %CXXFLAGS% %SFML_INCLUDE% %SOURCES% -o build/sfml_window.exe %SFML_LIB_DIR% %SFML_LIBS%
 
 :: Check if compilation was successful
 if %ERRORLEVEL% NEQ 0 (
@@ -33,6 +36,11 @@ echo Copying DLLs to build directory...
 copy DLLs\sfml-system-2.dll build\
 copy DLLs\sfml-window-2.dll build\
 copy DLLs\sfml-graphics-2.dll build\
+
+:: Copy wallpapers directory to build for portability
+if not exist build\wallpapers mkdir build\wallpapers
+echo Copying wallpapers to build directory...
+copy wallpapers\*.jpg build\wallpapers\
 
 :: Run the application with all DLLs in the same directory
 echo Running sfml_window.exe from build directory...
