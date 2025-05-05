@@ -24,6 +24,14 @@ private:
     float m_thumbnailWidth;
     float m_thumbnailHeight;
     
+    int m_hoveredSpriteIndex = -1;
+    const float m_hoverScaleFactor = 1.2f;
+    
+    std::vector<float> m_spriteAnimationProgress;
+    const float m_animationSpeed = 0.15f;
+    
+    float easeInOut(float t);
+    
     std::vector<std::string> m_wallpaperPaths = {
         "wallpapers/1.jpg", 
         "wallpapers/2.jpg", 
