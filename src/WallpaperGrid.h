@@ -10,16 +10,9 @@ public:
     WallpaperGrid(sf::RenderWindow& window);
     ~WallpaperGrid() = default;
     
-    // Initialize the grid with wallpapers
     bool initialize();
-    
-    // Handle events from the main loop
     void handleEvent(const sf::Event& event);
-    
-    // Update the grid's state
     void update();
-    
-    // Render the grid
     void render();
     
 private:
@@ -31,7 +24,6 @@ private:
     float m_thumbnailWidth;
     float m_thumbnailHeight;
     
-    // Wallpaper paths
     std::vector<std::string> m_wallpaperPaths = {
         "wallpapers/1.jpg", 
         "wallpapers/2.jpg", 
@@ -39,6 +31,5 @@ private:
         "wallpapers/4.jpg"
     };
     
-    // Calculate max scrolling position
     float getMaxScrollPosition() const;
-}; 
+};

@@ -1,10 +1,8 @@
 #include "ResourceManager.h"
 
 ResourceManager::ResourceManager() {
-    // Try to load the fail texture from file first
     bool failTextureLoaded = m_failTexture.loadFromFile("wallpapers/fail.jpg");
     
-    // If fail.jpg doesn't exist, create a default error texture
     if (!failTextureLoaded) {
         createDefaultErrorTexture();
     }
@@ -35,9 +33,8 @@ void ResourceManager::createDefaultErrorTexture() {
     std::cout << "fail.jpg not found, creating default error texture" << std::endl;
     m_failTexture.create(200, 150);
     sf::Image errorImage;
-    errorImage.create(200, 150, sf::Color(255, 0, 0)); // Red background
+    errorImage.create(200, 150, sf::Color(255, 0, 0));
     
-    // Draw an X pattern
     for (unsigned int i = 0; i < 200; i++) {
         for (unsigned int j = 0; j < 150; j++) {
             if (i == j || i == 200 - j - 1) {
